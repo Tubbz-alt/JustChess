@@ -32,6 +32,8 @@ namespace JustChess
             MaximizeBox = false;
             InitializeComponent();
             Text = "JustChess";
+            Icon = new Icon(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "JCPawn.Ico"));
+            //"C:\Users\gwflu\source\repos\JustChess\JustChess\JCPawn.PNG"
             for (int i = 0; i < 8; i++)
             {
                 for (int ii = 0; ii < 8; ii++)
