@@ -134,6 +134,12 @@ namespace JustChess
             var boards = new List<Board>();
             var v = new List<Board>();
 
+            foreach (Piece p2 in Pieces)
+            {
+                if (p2 is Empty || p2.Player.IsW != WTurn) { continue; }
+                if (p2 is Pawn) { (p2 as Pawn).enPass = false; }
+            }
+
             if (p is Pawn) { v = (p as Pawn).GenerateMoves(this); }
             if (p is King) { v = (p as King).GenerateMoves(this); }
             if (p is Knight) { v = (p as Knight).GenerateMoves(this); }
