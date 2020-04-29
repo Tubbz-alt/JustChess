@@ -1,7 +1,7 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
-namespace JustChess
+namespace ChessAIProject
 {
     [Serializable]
     public class Board
@@ -36,69 +36,6 @@ namespace JustChess
             };
             Pieces = tempPieces;
             return this;
-        }
-        public static Piece[,] Flip(Piece[,] p)
-        {
-            Piece[,] a2 = new Piece[8, 8];
-            for (int i = 0; i <= 7; i++)
-            {
-                for (int ii = 0; ii <= 7; ii++)
-                {
-                    a2[i, ii] = Serializer.DeepClone(p[7 - i, 7 - ii]);
-                    a2[i, ii].PosX = i; a2[i, ii].PosY = ii;
-                }
-            }
-            return a2;
-        }
-        public static Piece[,] AdjustFlip(Piece[,] p, bool isW)
-        {
-            Piece[,] pieces = Serializer.DeepClone(p);
-            if (!isW) { pieces = Flip(pieces); }
-            return pieces;
-        }
-        /// <summary>
-        /// Checks if one is in check
-        /// </summary>
-        /// <param isW?="isW"></param>
-        /// <returns></returns>
-        public bool amICheck(bool isW)
-        {
-            if (isW) { if (WCheck) { return true; } }
-            else { if (BCheck) { return true; } }
-            return false;
-        }
-        public string ChessNotation(Piece p, int fromx, int fromy, int tox, int toy)
-        {
-            string temp = string.Empty;
-            temp = PieceString(p) + NumLetter(fromx) + (fromy + 1);
-            temp += " " + NumLetter(tox) + (toy + 1);
-            return temp;
-        }
-        private char NumLetter(int i)
-        {
-            if (i > 8 || i < 1) { throw new Exception("Invalid character input"); }
-            switch (i)
-            {
-                case 1: return 'A';
-                case 2: return 'B';
-                case 3: return 'C';
-                case 4: return 'D';
-                case 5: return 'E';
-                case 6: return 'F';
-                case 7: return 'G';
-                case 8: return 'H';
-            }
-            return '$';
-        }
-        private string PieceString(Piece p)
-        {
-            if (p is Pawn) { return ""; }
-            if (p is Rook) { return "R"; }
-            if (p is Queen) { return "Q"; }
-            if (p is King) { return "K"; }
-            if (p is Bishop) { return "B"; }
-            if (p is Knight) { return "N"; }
-            throw new Exception("Invalid piece input");
         }
         public Board Swap(int[] start, int[] end)
         {
