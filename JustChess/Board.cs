@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace ChessAIProject
+namespace JustChess
 {
     [Serializable]
     public class Board
